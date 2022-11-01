@@ -8,6 +8,15 @@
     margin-top: 10px;
 }
 
+.home-left{
+    float: left;
+    position: relative;
+    /* border: 3px black solid;  */
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 40px;
+}
+
 .fadeInUp {
     -webkit-animation-name: fadeInUp;
     animation-name: fadeInUp;
@@ -110,8 +119,9 @@ h6 {
     color: rgba(255, 7, 58, .6);
 }
 
-.Level .level-item>* {
-    align-self: center;
+.Level  {   
+    display: flex;
+    margin: 0;
 }
 
 .Level h1,
@@ -133,8 +143,6 @@ h5 {
 h4 {
     font-size: 15px!important;
 }
-
-.Level .level-item:first-child {}
 
 .Level .level-item {
     display: flex;
@@ -306,9 +314,6 @@ table tbody:nth-child(odd) tr {
     background-color: white;
 }
 
-table tbody:nth-child(even) tr {
-    /*  background-color: #ddd; */
-}
 
 table tbody td:first-child {
     text-align: left;
@@ -434,6 +439,13 @@ table tbody tr td:first-child {
     }
     .home-left.col-lg-7.col-md-7.col-sm-7.col-xs-12 {
         padding-left: 0;
+        /* border: 3px solid black; */
+        padding-right: 0;
+    }
+
+    .home-right{
+        padding-left: 0;
+        /* border: 3px solid black; */
         padding-right: 0;
     }
     .Minigraph.row {
@@ -529,7 +541,11 @@ table tbody tr td:first-child {
 }
 
 .home-right {
-    padding-left: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 40px;
+    float: left;
+    /* border: 3px solid black; */
 }
 
 .MapExplorer .map-stats .stats:first-child {
@@ -708,7 +724,8 @@ h3 {
 .note {
     background-color: #eaeaea;
     margin-bottom: 10px;
-    margin: 10px;
+    margin: 2px;
+    padding:10px;
 }
 
 .note h5 {

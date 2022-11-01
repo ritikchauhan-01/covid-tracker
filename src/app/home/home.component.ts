@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { CoronaService } from '../api/corona.service';
+import { CoronaService } from '../api/corona.service';
 // import { ThrowStmt } from '@angular/compiler';
 
 
@@ -8,10 +8,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-
-}
-// export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit {
+SingleStateData: any;
 
 //   showArrows = {
 //     uparrowState: false,
@@ -28,7 +26,7 @@ export class HomeComponent {
 
 
 //   showDistrict:boolean=false
-//   sortedDataBasedOnDate
+//   sortedDataBasedOnDate: string | any[] = []; 
 //   private isAscendingSort: boolean = false;
 
 //   DailystateStatus: Array<any> = [{ state: '', confirmed: '', recovered: '', deaths: '', active: '' }];
@@ -38,16 +36,16 @@ export class HomeComponent {
 //   startdate = new Date()
 //   lastupdateddate = new Date();
 //   lastupdated: any = { hour: 0, minute: 0, second: 0 }
-//   SingleStateData
+//   SingleStateData: any
 //   lastrefreshedtime: any;
 
 //   constructor(private cs: CoronaService) { }
 
-//   ngOnInit(): void {
+  ngOnInit(): void {
 
-//     this.getStateWise()
-//     this.testData()
-//   }
+    // this.getStateWise()
+    // this.testData()
+  }
 
 //   testData() {
 //     this.cs.getDailyCaseStatus().subscribe(
@@ -67,31 +65,31 @@ export class HomeComponent {
 //     );
 //   }
 
-//   calculateDiff(data) {
+//   calculateDiff(data: []) {
 //     let x = data
 //     let last: any = x[x.length - 1];
 //     let last2: any = x[x.length - 2];
 
-//     function calculate(schema1, schema2) {
+//     function calculate(schema1: { [x: string]: any; hasOwnProperty: (arg0: string) => any; }, schema2: { [x: string]: any; hasOwnProperty: (arg0: string) => any; }) {
 //       var ret = {};
-//       for (var key in schema1) {
-//         if (schema1.hasOwnProperty(key) && schema2.hasOwnProperty(key)) {
-//           var obj = schema1[key];
-//           var obj2 = schema2[key]
-//           if (typeof obj === "number" && !isNaN(obj) && typeof obj2 === "number" && !isNaN(obj2)) {
-//             ret[key] = obj - obj2;
-//           }
-//           else {
-//             if (typeof obj === 'object' && typeof obj2 === 'object') {
-//               ret[key] = calculate(obj, obj2);
-//             }
-//             else {
-//               ret[key] = obj;
-//             }
-//           }
-//         }
-//       }
-//       return ret;
+//       // for (var key in schema1) {
+//       //   if (schema1.hasOwnProperty(key) && schema2.hasOwnProperty(key)) {
+//       //     var obj = schema1[key];
+//       //     var obj2 = schema2[key]
+//       //     if (typeof obj === "number" && !isNaN(obj) && typeof obj2 === "number" && !isNaN(obj2)) {
+//       //       ret[key] = obj - obj2;
+//       //     }
+//       //     else {
+//       //       if (typeof obj === 'object' && typeof obj2 === 'object') {
+//       //         ret[key] = calculate(obj, obj2);
+//       //       }
+//       //       else {
+//       //         ret[key] = obj;
+//       //       }
+//       //     }
+//       //   }
+//       // }
+//       // return ret;
 //     }
 //     let test = calculate(last, last2);
 //     this.DailyStatus = test;
@@ -110,7 +108,7 @@ export class HomeComponent {
 //       this.lastupdateddate = data.data.lastRefreshed
 //      // console.log(this.lastupdated)
 
-//       function getDataDiff(startDate, endDate) {
+//       function getDataDiff(startDate: Date, endDate: Date) {
 //         var diff = endDate.getTime() - startDate.getTime();
 //         var days = Math.floor(diff / (60 * 60 * 24 * 1000));
 //         var hours = Math.floor(diff / (60 * 60 * 1000)) - (days * 24);
@@ -127,7 +125,7 @@ export class HomeComponent {
 //       })
 //   }
 
-//   OngetState(state) {
+//   OngetState(state: string | number) {
 
 //   this.getDataofState(state)
 
@@ -142,7 +140,7 @@ export class HomeComponent {
 //     console.log();
 //   }
 
-//   showHideData(data) {
+//   showHideData(data: { [x: string]: boolean; }) {
 //     if(data && data['show'] == true) {
 //       data['show'] = false;
 //     } else {
@@ -150,12 +148,12 @@ export class HomeComponent {
 //     }
 //   }
 
-//   sortAscending(data) {
+//   sortAscending(data: any[]) {
 //     this.resetArrows()
 //     this.isAscendingSort = !this.isAscendingSort;
 //    this.showArrows.uparrowState=!this.showArrows.uparrowState
     
-//     data.forEach(item => item.statewise.sort(function (a, b) {
+//     data.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
 //       if (a.state < b.state) {
 //         return -1;
 //       }
@@ -171,7 +169,7 @@ export class HomeComponent {
 //     if (!this.isAscendingSort) {
 //       this.resetArrows()
 //       this.showArrows.downarrowState=!this.showArrows.downarrowState
-//       let a = data.forEach(item => item.statewise.sort(function (a, b) {
+//       let a = data.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
       
 //       if (b.state < a.state) {
 //         return -1;
@@ -200,14 +198,14 @@ export class HomeComponent {
     
 //   }
 
-//   sortByMaxCases(sortedDataBasedOnDate) {
+//   sortByMaxCases(sortedDataBasedOnDate: any[]) {
 //     this.resetArrows()
 //     this.isAscendingSort = !this.isAscendingSort;
 //    this.showArrows.downarrowConfirmed=!this.showArrows.downarrowConfirmed
 
 
  
-//     sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//     sortedDataBasedOnDate.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
 //       if (b.confirmed < a.confirmed) {
 //         return -1;
 //       }
@@ -221,7 +219,7 @@ export class HomeComponent {
 //     if (!this.isAscendingSort) {
 //       this.resetArrows()
 //      this.showArrows.uparrowowConfirmed=!this.showArrows.uparrowowConfirmed
-//     sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//     sortedDataBasedOnDate.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
 //         if (a.confirmed < b.confirmed) {
 //           return -1;
 //         }
@@ -235,12 +233,12 @@ export class HomeComponent {
 //     }
 //   }
 
-//   sortByMaxActive(sortedDataBasedOnDate) {
+//   sortByMaxActive(sortedDataBasedOnDate: any[]) {
 //     this.resetArrows()
 //     this.isAscendingSort = !this.isAscendingSort;
 //    this.showArrows.uparrowActive=!this.showArrows.uparrowActive
    
-//     sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//     sortedDataBasedOnDate.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
 //       if (a.active < b.active) {
 //         return -1;
 //       }
@@ -255,7 +253,7 @@ export class HomeComponent {
 //       this.resetArrows()
 //      this.showArrows.downarrowActive=!this.showArrows.downarrowActive
 
-//       sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//       sortedDataBasedOnDate.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
 //         if (b.active < a.active) {
 //           return -1;
 //         }
@@ -269,12 +267,12 @@ export class HomeComponent {
 
 //   }
 
-//   sortByMaxRecovered(sortedDataBasedOnDate) {
+//   sortByMaxRecovered(sortedDataBasedOnDate: any[]) {
 
 //     this.resetArrows()
 //     this.isAscendingSort = !this.isAscendingSort;
 //    this.showArrows.uparrowRecovered=!this.showArrows.uparrowRecovered
-//     sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//     sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a: { recovered: number; }, b: { recovered: number; }) {
 //       if (b.recovered < a.recovered) {
 //         return -1;
 //       }
@@ -289,7 +287,7 @@ export class HomeComponent {
 
 //       this.resetArrows()
 //      this.showArrows.downarrowRecovered=!this.showArrows.downarrowRecovered
-//       sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//       sortedDataBasedOnDate.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
 //         if (a.recovered < b.recovered) {
 //           return -1;
 //         }
@@ -304,12 +302,12 @@ export class HomeComponent {
 
 //   }
 
-//   sortByMaxDeath(sortedDataBasedOnDate) {
+//   sortByMaxDeath(sortedDataBasedOnDate: any[]) {
     
 //     this.resetArrows()
 //     this.isAscendingSort = !this.isAscendingSort;
 //    this.showArrows.uparrowDeath=!this.showArrows.uparrowDeath
-//     sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//     sortedDataBasedOnDate.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
      
 //     if (a.deaths < b.deaths) {
 //       return -1;
@@ -324,7 +322,7 @@ export class HomeComponent {
 //     if (!this.isAscendingSort) {
 //       this.resetArrows()
 //          this.showArrows.downarrowDeath=!this.showArrows.downarrowDeath
-//       sortedDataBasedOnDate.forEach(item => item.statewise.sort(function (a, b) {
+//       sortedDataBasedOnDate.forEach((item: { statewise: any[]; }) => item.statewise.sort(function (a, b) {
 //         if (b.deaths < a.deaths) {
 //           return -1;
 //         }
@@ -341,4 +339,4 @@ export class HomeComponent {
 
 //   }
 
-// }
+}
